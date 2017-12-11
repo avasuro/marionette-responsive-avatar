@@ -154,7 +154,6 @@
          * @private
          */
         _isPictureCanBeLoaded(imgUrl) {
-            console.log(`checking url: ${imgUrl}`);
             return !imgUrl ? Promise.reject() : new Promise((resolve, reject) => {
                 let img = new Image();
                 img.onload = this._onImageLoadOrErr(img, resolve);
