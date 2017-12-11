@@ -14,6 +14,8 @@ var Root = Marionette.View.extend({
             model: new Backbone.Model({
                 // Set picture of the avatar:
                 picture: 'http://vokrug.tv/pic/person/f/4/a/9/f4a9c7b9ce44e06ac21466d91cf1a6ce.jpeg',
+                // Set picture that will be used if main picture failed to load:
+                fallbackPicture: '',
                 // Set background color of the avatar:
                 background: '#00495e',
                 // Set font color of the avatar:

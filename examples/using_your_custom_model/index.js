@@ -36,7 +36,7 @@ var Root = Marionette.View.extend({
             model: userModel,
             templateContext: function() {
                 var nativeContext = ResponsiveAvatar.prototype.templateContext.apply(this);
-                nativeContext.picture = this.model.get('image');
+                nativeContext.pictures = [this.model.get('image')];
                 nativeContext.initials = ResponsiveAvatar.capitalizeFirstAndLastName(this.model.get('firstName'), this.model.get('lastName'));
                 return nativeContext;
             }
@@ -49,7 +49,7 @@ var Root = Marionette.View.extend({
             model: userModel_noAvatar,
             templateContext() {
                 return {
-                    picture: this.model.get('image'),
+                    pictures: [this.model.get('image')],
                     background: 'darkred',
                     color: 'white',
                     fontSize: 45,

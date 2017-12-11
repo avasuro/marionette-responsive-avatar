@@ -33,6 +33,8 @@ Responsive avatar can be used as any normal Marionette View. Some examples:
                 model: new Backbone.Model({
                     // Set picture of the avatar:
                     picture: 'http://vokrug.tv/pic/person/f/4/a/9/f4a9c7b9ce44e06ac21466d91cf1a6ce.jpeg',
+                    // Set picture that will be used if main picture failed to load:
+                    fallbackPicture: '',
                     // Set background color of the avatar:
                     background: '#00495e',
                     // Set font color of the avatar:
@@ -63,7 +65,7 @@ Responsive avatar can be used as any normal Marionette View. Some examples:
                 model: myCustomModel,
                 templateContext() {
                      return {
-                         picture: this.model.get('image'),
+                         pictures: this.model.get('image'),
                          background: 'darkred',
                          color: 'white',
                          fontSize: 45,
@@ -74,6 +76,12 @@ Responsive avatar can be used as any normal Marionette View. Some examples:
         }
     })
     ```
+## Methods
+
+* *refreshAvatarFrom* - refresh avatar from new list of URLs
+
+// TODO: write more about this method and it's usage
+
 ## Helpers
 
 There is static method of the ResponsiveAvatar class, named "capitalizeFirstAndLastName"
