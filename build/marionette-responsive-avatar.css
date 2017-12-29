@@ -1,4 +1,5 @@
 .responsive-avatar {
+  user-select: none;
   position: relative;
   border-radius: 50%;
   overflow: hidden; }
