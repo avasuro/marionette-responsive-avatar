@@ -1,6 +1,6 @@
 {
   "name": "marionette-responsive-avatar",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Marionette component to render avatar or initials if no avatar provided",
   "main": "build/marionette-responsive-avatar.js",
   "directories": {
