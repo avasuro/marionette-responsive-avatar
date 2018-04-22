@@ -48,10 +48,41 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         className: 'responsive-avatar',
 
-        template: _.template('<svg class="responsive-avatar__initials" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="background-color: <%- background %>">' + '<text x = "50" y = "<%- 50 + (+(fontSize/3).toFixed(3)) %>" text-anchor="middle" font-size="<%- fontSize %>" style="fill: <%- color %>">' + '<%- initials %>' + '</text>' + '</svg>' + '<div class="responsive-avatar__image js-responsive-avatar__image"' + '<% if (_picture) { %>' + 'style="background-image: url(<%- _picture %>);"' + '<% } %>' + '></div>'),
+        template: function template(data) {
+            var xmlns = 'http://www.w3.org/2000/svg';
+
+            var avatarInitialsBox = document.createElementNS(xmlns, 'svg');
+            avatarInitialsBox.setAttributeNS(null, 'viewBox', '0 0 100 100');
+            avatarInitialsBox.setAttribute('class', 'responsive-avatar__initials');
+            avatarInitialsBox.style.backgroundColor = data.background;
+
+            var avatarInitials = document.createElementNS(xmlns, 'text');
+            avatarInitials.setAttributeNS(null, 'x', 50);
+            avatarInitials.setAttributeNS(null, 'y', 50 + +(data.fontSize / 3).toFixed(3));
+            avatarInitials.setAttributeNS(null, 'text-anchor', 'middle');
+            avatarInitials.setAttributeNS(null, 'font-size', data.fontSize);
+            avatarInitials.style.fill = data.color;
+            avatarInitials.appendChild(document.createTextNode(data.initials));
+
+            avatarInitialsBox.appendChild(avatarInitials);
+
+            var avatarImage = document.createElement('div');
+            avatarImage.setAttribute('class', 'responsive-avatar__image js-responsive-avatar__image');
+            if (data._picture) {
+                avatarImage.style.backgroundImage = 'url(' + data._picture + ')';
+            }
+
+            var result = document.createDocumentFragment();
+            result.appendChild(avatarInitialsBox);
+            result.appendChild(avatarImage);
+            return result;
+        },
+
+
         ui: {
             avatarImage: '.js-responsive-avatar__image'
         },
+
         templateContext: function templateContext() {
             return {
                 pictures: [this.model.get('picture') || '', this.model.get('fallbackPicture') || ''],
@@ -82,6 +113,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             data._picture = this._actualPicture || '';
             return Marionette.View.prototype._renderHtml.call(this, template, data);
+        },
+
+
+        /**
+        * Attaches the content of a given view.
+         * This method is overridden to optimize rendering
+        *
+        * @param {HTMLElement|DocumentFragment} html
+        *
+        * @returns {ResponsiveAvatar}
+        */
+        attachElContent: function attachElContent(html) {
+            this.$el.empty();
+            this.el.appendChild(html);
+            return this;
         },
 
 
