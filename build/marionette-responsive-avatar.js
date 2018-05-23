@@ -111,7 +111,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 this.refreshAvatarFrom(pictures);
             }
 
-            data._picture = this._actualPicture || '';
+            data._picture = this._actualPicture;
             return Marionette.View.prototype._renderHtml.call(this, template, data);
         },
 
@@ -146,7 +146,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             this._actualPicture = this.constructor.ACTUAL_PICTURE_NOT_INITIALIZED;
 
             return this._findAvailableSourceIn(pictures).then(function (source) {
-                _this._actualPicture = source;
+                _this._actualPicture = source || null;
                 _this._updateAvatarSrc();
             });
         },
@@ -161,7 +161,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
          */
         _updateAvatarSrc: function _updateAvatarSrc() {
             if (this.isRendered() && !this.isDestroyed()) {
-                this.getUI('avatarImage').css('background-image', 'url(' + (this._actualPicture || '') + ')');
+                this.getUI('avatarImage').css('background-image', this._actualPicture ? 'url(' + this._actualPicture + ')' : '');
             }
         },
 

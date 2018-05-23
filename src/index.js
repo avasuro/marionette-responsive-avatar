@@ -112,7 +112,7 @@
                 this.refreshAvatarFrom(pictures);
             }
 
-            data._picture = this._actualPicture || '';
+            data._picture = this._actualPicture;
             return Marionette.View.prototype._renderHtml.call(this, template, data);
         },
 
@@ -142,7 +142,7 @@
 
             return this._findAvailableSourceIn(pictures)
                 .then(source => {
-                    this._actualPicture = source;
+                    this._actualPicture = source || null;
                     this._updateAvatarSrc()
                 });
         },
@@ -156,7 +156,11 @@
          */
         _updateAvatarSrc() {
             if (this.isRendered() && !this.isDestroyed()) {
-                this.getUI('avatarImage').css('background-image', `url(${this._actualPicture || ''})`);
+                this.getUI('avatarImage')
+                    .css(
+                        'background-image',
+                        this._actualPicture ? `url(${this._actualPicture})` : ''
+                    );
             }
         },
 
