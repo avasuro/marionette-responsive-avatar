@@ -53,7 +53,8 @@ var Root = Marionette.View.extend({
                     background: 'darkred',
                     color: 'white',
                     fontSize: 45,
-                    initials: ResponsiveAvatar.capitalizeFirstAndLastName(this.model.get('firstName'), this.model.get('lastName'))
+                    initials: ResponsiveAvatar.capitalizeFirstAndLastName(this.model.get('firstName'), this.model.get('lastName')),
+                    pictureSize: ResponsiveAvatar.PICTURE_SIZE.FILL
                 };
             }
         }));

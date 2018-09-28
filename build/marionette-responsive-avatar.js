@@ -67,7 +67,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             avatarInitialsBox.appendChild(avatarInitials);
 
             var avatarImage = document.createElement('div');
-            avatarImage.setAttribute('class', 'responsive-avatar__image js-responsive-avatar__image');
+            avatarImage.setAttribute('class', ['responsive-avatar__image', 'js-responsive-avatar__image', 'responsive-avatar__image--size-' + data.pictureSize].join(' '));
             if (data._picture) {
                 avatarImage.style.backgroundImage = 'url(' + data._picture + ')';
             }
@@ -89,7 +89,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 background: this.model.get('background') || '#00495e',
                 color: this.model.get('color') || 'white',
                 fontSize: this.model.get('fontSize') || 36,
-                initials: this.model.get('initials') || ''
+                initials: this.model.get('initials') || '',
+                pictureSize: this.model.get('pictureSize') || this.constructor.PICTURE_SIZE.FILL
             };
         },
         _renderHtml: function _renderHtml(template, data) {
@@ -226,6 +227,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
     }, {
         ACTUAL_PICTURE_NOT_INITIALIZED: undefined,
+        PICTURE_SIZE: {
+            // Make image on full size of avatar area:
+            FILL: 'fill',
+            // Fit image into avatar area (counting rounded corners, so no image part
+            // will be outside of the avatar)
+            FIT: 'fit'
+        },
 
         /**
          * Helper to capitalize first and last name of the user

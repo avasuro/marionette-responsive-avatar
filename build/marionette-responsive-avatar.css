@@ -9,12 +9,18 @@
     padding-bottom: 100%; }
   .responsive-avatar__image {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background: transparent no-repeat center;
     background-size: cover; }
+    .responsive-avatar__image--size-fill {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+    .responsive-avatar__image--size-fit {
+      top: 14.63932%;
+      left: 14.63932%;
+      width: 70.72136%;
+      height: 70.72136%; }
   .responsive-avatar__initials {
     position: absolute;
     top: 0;
