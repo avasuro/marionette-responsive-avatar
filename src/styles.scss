@@ -14,7 +14,6 @@
     &__image {
         position: absolute;
         background: transparent no-repeat center;
-        background-size: cover;
 
         &--size {
             &-fill {
@@ -34,6 +33,16 @@
                 left: $offset;
                 width: $size;
                 height: $size;
+            }
+        }
+
+        &--layout {
+            &-cover {
+                background-size: cover;
+            }
+
+            &-contain {
+                background-size: contain;
             }
         }
     }

@@ -9,8 +9,7 @@
     padding-bottom: 100%; }
   .responsive-avatar__image {
     position: absolute;
-    background: transparent no-repeat center;
-    background-size: cover; }
+    background: transparent no-repeat center; }
     .responsive-avatar__image--size-fill {
       top: 0;
       left: 0;
@@ -21,6 +20,10 @@
       left: 14.63932%;
       width: 70.72136%;
       height: 70.72136%; }
+    .responsive-avatar__image--layout-cover {
+      background-size: cover; }
+    .responsive-avatar__image--layout-contain {
+      background-size: contain; }
   .responsive-avatar__initials {
     position: absolute;
     top: 0;

@@ -64,7 +64,8 @@
             avatarImage.setAttribute('class', [
                 'responsive-avatar__image',
                 'js-responsive-avatar__image',
-                `responsive-avatar__image--size-${data.pictureSize}`
+                `responsive-avatar__image--size-${data.pictureSize}`,
+                `responsive-avatar__image--layout-${data.pictureLayout}`
             ].join(' '));
             if (data._picture) {
                 avatarImage.style.backgroundImage = `url(${data._picture})`
@@ -90,7 +91,8 @@
                 color: this.model.get('color') || 'white',
                 fontSize: this.model.get('fontSize') || 36,
                 initials: this.model.get('initials') || '',
-                pictureSize: this.model.get('pictureSize') || this.constructor.PICTURE_SIZE.FILL
+                pictureSize: this.model.get('pictureSize') || this.constructor.PICTURE_SIZE.FILL,
+                pictureLayout: this.model.get('pictureLayout') || this.constructor.PICTURE_LAYOUT.COVER
             }
         },
 
@@ -225,6 +227,10 @@
     },
     {
         ACTUAL_PICTURE_NOT_INITIALIZED: undefined,
+        PICTURE_LAYOUT: {
+            COVER: 'cover',
+            CONTAIN: 'contain'
+        },
         PICTURE_SIZE: {
             // Make image on full size of avatar area:
             FILL: 'fill',
