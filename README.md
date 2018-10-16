@@ -44,7 +44,9 @@ Responsive avatar can be used as any normal Marionette View. Some examples:
                     // Set initials to display if no picture assigned:
                     initials: 'EW',
                     // Set picture size to fill all avatar area:
-                    pictureSize: ResponsiveAvatar.PICTURE_SIZE.FILL
+                    pictureSize: ResponsiveAvatar.PICTURE_SIZE.FILL,
+                    // Set picture size to fill all avatar canvas:
+                    pictureLayout: ResponsiveAvatar.PICTURE_LAYOUT.COVER
                 })
             }));
         }
@@ -72,7 +74,8 @@ Responsive avatar can be used as any normal Marionette View. Some examples:
                          color: 'white',
                          fontSize: 45,
                          initials: ResponsiveAvatar.capitalizeFirstAndLastName(this.model.get('firstName'), this.model.get('lastName'))
-                         pictureSize: ResponsiveAvatar.PICTURE_SIZE.FILL
+                         pictureSize: ResponsiveAvatar.PICTURE_SIZE.FILL,
+                         pictureLayout: ResponsiveAvatar.PICTURE_LAYOUT.COVER
                      };
                 }
             }));
