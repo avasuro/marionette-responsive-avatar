@@ -20,7 +20,9 @@
     const ResponsiveAvatar = Marionette.View.extend({
         initialize() {
             /**
-             * Contains picture URL that exists and loads from server or null if no picture can be loaded
+             * Contains picture URL that exists and loads from server or null if no picture
+             * can be loaded
+             *
              * Contains:
              *      ACTUAL_PICTURE_NOT_INITIALIZED - if picture never tried to load;
              *      null      - if no picture can be loaded;
@@ -46,13 +48,13 @@
             const xmlns = 'http://www.w3.org/2000/svg';
 
             let avatarInitialsBox = document.createElementNS(xmlns, 'svg');
-            avatarInitialsBox.setAttributeNS (null, 'viewBox', '0 0 100 100');
+            avatarInitialsBox.setAttributeNS(null, 'viewBox', '0 0 100 100');
             avatarInitialsBox.setAttribute('class', 'responsive-avatar__initials');
             avatarInitialsBox.style.backgroundColor = data.background;
 
             let avatarInitials = document.createElementNS(xmlns, 'text');
             avatarInitials.setAttributeNS(null, 'x', 50);
-            avatarInitials.setAttributeNS(null, 'y', 50 + (+(data.fontSize/3).toFixed(3)));
+            avatarInitials.setAttributeNS(null, 'y', 50 + (+(data.fontSize / 3).toFixed(3)));
             avatarInitials.setAttributeNS(null, 'text-anchor', 'middle');
             avatarInitials.setAttributeNS(null, 'font-size', data.fontSize);
             avatarInitials.style.fill = data.color;
@@ -68,7 +70,7 @@
                 `responsive-avatar__image--layout-${data.pictureLayout}`
             ].join(' '));
             if (data._picture) {
-                avatarImage.style.backgroundImage = `url(${data._picture})`
+                avatarImage.style.backgroundImage = `url(${data._picture})`;
             }
 
             let result = document.createDocumentFragment();
@@ -93,7 +95,7 @@
                 initials: this.model.get('initials') || '',
                 pictureSize: this.model.get('pictureSize') || this.constructor.PICTURE_SIZE.FILL,
                 pictureLayout: this.model.get('pictureLayout') || this.constructor.PICTURE_LAYOUT.COVER
-            }
+            };
         },
 
         _renderHtml(template, data) {
@@ -131,11 +133,11 @@
 		 *
 		 * @returns {ResponsiveAvatar}
 		 */
-		attachElContent(html) {
-			this.$el.empty();
-			this.el.appendChild(html);
-			return this;
-		},
+        attachElContent(html) {
+            this.$el.empty();
+            this.el.appendChild(html);
+            return this;
+        },
 
         /**
          * Refresh avatar from list of pictures
@@ -148,9 +150,9 @@
             this._actualPicture = this.constructor.ACTUAL_PICTURE_NOT_INITIALIZED;
 
             return this._findAvailableSourceIn(pictures)
-                .then(source => {
+                .then((source) => {
                     this._actualPicture = source || null;
-                    this._updateAvatarSrc()
+                    this._updateAvatarSrc();
                 });
         },
 
@@ -174,6 +176,8 @@
         /**
          * Checks all passed avatar sources to find one that can be loaded
          *
+         * @param {array} avatarsSources
+         *
          * @returns {Promise.<string>} empty string if no avatar
          *
          * @private
@@ -193,6 +197,8 @@
          * Check is picture can be loaded
          *
          * @param {string} imgUrl
+         *
+         * @returns {void}
          *
          * @private
          */
@@ -247,7 +253,7 @@
          *
          * @returns {string}
          */
-        capitalizeFirstAndLastName: function (first = '', last = '') {
+        capitalizeFirstAndLastName(first = '', last = '') {
             if (typeof first !== 'string') {
                 throw new Error(`first name need to be type of "string", ${typeof first} given`);
             }
