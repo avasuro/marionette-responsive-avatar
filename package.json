@@ -38,7 +38,7 @@
           "targets": {
             "browsers": [
               "last 2 versions",
-              "ie >= 8"
+              "ie >= 9"
             ]
           }
         }
@@ -59,7 +59,7 @@
   "peerDependencies": {
     "backbone": "~1.3",
     "backbone.marionette": "~3",
-    "jquery": "~1.12.0",
+    "jquery": "~3.3.0",
     "underscore": "~1.8.0"
   },
   "devDependencies": {
@@ -85,7 +85,7 @@
     "gulp-group": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
-    "jquery": "^1.12.4",
+    "jquery": "^3.3.0",
     "underscore": "^1.8.3",
     "underscore-template-loader": "^0.8.0"
   }
