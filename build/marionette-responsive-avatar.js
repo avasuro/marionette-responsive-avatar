@@ -25,7 +25,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     var ResponsiveAvatar = Marionette.View.extend({
         initialize: function initialize() {
             /**
-             * Contains picture URL that exists and loads from server or null if no picture can be loaded
+             * Contains picture URL that exists and loads from server or null if no picture
+             * can be loaded
+             *
              * Contains:
              *      ACTUAL_PICTURE_NOT_INITIALIZED - if picture never tried to load;
              *      null      - if no picture can be loaded;
@@ -171,6 +173,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         /**
          * Checks all passed avatar sources to find one that can be loaded
          *
+         * @param {array} avatarsSources
+         *
          * @returns {Promise.<string>} empty string if no avatar
          *
          * @private
@@ -178,13 +182,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _findAvailableSourceIn: function _findAvailableSourceIn(avatarsSources) {
             var _this2 = this;
 
-            return avatarsSources.reduce(function (result, source) {
+            var startSearch = null;
+            var initialPromise = new Promise(function (resolve, reject) {
+                startSearch = reject;
+            });
+
+            var searchProcess = avatarsSources.reduce(function (result, source) {
                 return result.catch(function () {
                     return _this2._isPictureCanBeLoaded(source);
                 });
-            }, Promise.reject('')).catch(function () {
+            }, initialPromise).catch(function () {
                 return '';
             });
+
+            startSearch();
+            return searchProcess;
         },
 
 
@@ -192,6 +204,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
          * Check is picture can be loaded
          *
          * @param {string} imgUrl
+         *
+         * @returns {void}
          *
          * @private
          */

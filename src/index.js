@@ -183,14 +183,22 @@
          * @private
          */
         _findAvailableSourceIn(avatarsSources) {
-            return avatarsSources
+            let startSearch = null;
+            let initialPromise = new Promise((resolve, reject) => {
+                startSearch = reject;
+            });
+
+            let searchProcess = avatarsSources
                 .reduce(
                     (result, source) => result.catch(
                         () => this._isPictureCanBeLoaded(source)
                     ),
-                    Promise.reject('')
+                    initialPromise
                 )
                 .catch(() => '');
+
+            startSearch();
+            return searchProcess;
         },
 
         /**
